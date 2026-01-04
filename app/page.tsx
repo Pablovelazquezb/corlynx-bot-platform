@@ -2,6 +2,8 @@ import Link from 'next/link';
 import { MessageSquare, Plus, Settings } from 'lucide-react';
 import { prisma } from '@/lib/db';
 
+export const dynamic = 'force-dynamic';
+
 export default async function Home() {
   const bots = await prisma.bot.findMany({
     orderBy: { updatedAt: 'desc' },
