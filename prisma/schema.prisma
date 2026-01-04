@@ -1,0 +1,39 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Bot {
+  id        String   @id @default(uuid())
+  name      String
+  prompt    String   // System prompt for the agent
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  
+  // WhatsApp specific config
+  whatsappPhoneNumberId String?
+  whatsappAccessToken   String?
+  whatsappVerifyToken   String?
+  
+  // AI config
+  openaiApiKey          String?
+
+  messages  Message[]
+}
+
+model Message {
+  id        String   @id @default(uuid())
+  content   String
+  role      String   // 'user' | 'assistant' | 'system'
+  createdAt DateTime @default(now())
+  
+  botId     String
+  bot       Bot      @relation(fields: [botId], references: [id], onDelete: Cascade)
+}
