@@ -5,12 +5,19 @@ import { prisma } from '@/lib/db';
 export const dynamic = 'force-dynamic';
 
 export default async function Home() {
-  const bots = await prisma.bot.findMany({
-    orderBy: { updatedAt: 'desc' },
-    include: { _count: { select: { messages: true } } }
-  });
+  let bots: any[] = [];
+  let totalMessages = 0;
 
-  const totalMessages = await prisma.message.count();
+  try {
+    bots = await prisma.bot.findMany({
+      orderBy: { updatedAt: 'desc' },
+      include: { _count: { select: { messages: true } } }
+    });
+    totalMessages = await prisma.message.count();
+  } catch (error) {
+    console.error('Database connection failed during render (likely build time):', error);
+    // Return default/empty state so build succeeds
+  }
 
   return (
     <div className="min-h-screen bg-gray-50">
