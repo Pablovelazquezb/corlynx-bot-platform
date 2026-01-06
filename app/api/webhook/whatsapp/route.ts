@@ -23,6 +23,7 @@ export async function GET(req: Request) {
 export async function POST(req: Request) {
     try {
         const body = await req.json();
+        console.log('📥 Webhook Received:', JSON.stringify(body, null, 2));
 
         // Check if it's a WhatsApp status update or message
         if (body.object === 'whatsapp_business_account') {
@@ -32,9 +33,12 @@ export async function POST(req: Request) {
             const message = value?.messages?.[0];
             const phoneNumberId = value?.metadata?.phone_number_id;
 
+            console.log(`🔍 Processing: PhoneID=${phoneNumberId}, MsgType=${message?.type}`);
+
             if (message && message.type === 'text') {
                 const from = message.from; // User's phone number
                 const text = message.text.body;
+                console.log(`📩 User Message from ${from}: "${text}"`);
 
                 // Find bot by phone number ID, or fallback to first bot (legacy/dev support)
                 let bot = null;
