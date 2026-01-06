@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import { prisma } from '@/lib/db';
 import { notFound } from 'next/navigation';
 import ChatPlayground from '@/components/ChatPlayground';
@@ -28,6 +29,12 @@ export default async function BotPage({ params }: { params: { id: string } }) {
     return (
         <div className="min-h-screen bg-gray-50 py-8">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div className="mb-6">
+                    <Link href="/" className="text-blue-600 hover:text-blue-800 text-sm font-medium flex items-center">
+                        ← Back to Menu
+                    </Link>
+                </div>
+
                 <div className="flex justify-between items-center mb-8">
                     <h1 className="text-3xl font-bold text-gray-900">{bot.name}</h1>
                     <span className="text-sm text-gray-500">ID: {bot.id}</span>
@@ -48,7 +55,7 @@ export default async function BotPage({ params }: { params: { id: string } }) {
                                     type="text"
                                     defaultValue={bot.name}
                                     required
-                                    className="mt-1 appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+                                    className="mt-1 appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm text-gray-900"
                                 />
                             </div>
 
@@ -62,7 +69,7 @@ export default async function BotPage({ params }: { params: { id: string } }) {
                                     rows={6}
                                     defaultValue={bot.prompt}
                                     required
-                                    className="mt-1 appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+                                    className="mt-1 appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm text-gray-900"
                                 />
                             </div>
 
@@ -80,7 +87,7 @@ export default async function BotPage({ params }: { params: { id: string } }) {
                                             type="password"
                                             defaultValue={bot.openaiApiKey || ''}
                                             placeholder="sk-..."
-                                            className="mt-1 appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+                                            className="mt-1 appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm text-gray-900"
                                         />
                                     </div>
 
@@ -93,7 +100,7 @@ export default async function BotPage({ params }: { params: { id: string } }) {
                                             name="whatsappAccessToken"
                                             type="password"
                                             defaultValue={bot.whatsappAccessToken || ''}
-                                            className="mt-1 appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+                                            className="mt-1 appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm text-gray-900"
                                         />
                                     </div>
 
@@ -106,7 +113,7 @@ export default async function BotPage({ params }: { params: { id: string } }) {
                                             name="whatsappPhoneNumberId"
                                             type="text"
                                             defaultValue={bot.whatsappPhoneNumberId || ''}
-                                            className="mt-1 appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+                                            className="mt-1 appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm text-gray-900"
                                         />
                                     </div>
 
@@ -119,7 +126,7 @@ export default async function BotPage({ params }: { params: { id: string } }) {
                                             name="whatsappVerifyToken"
                                             type="text"
                                             defaultValue={bot.whatsappVerifyToken || ''}
-                                            className="mt-1 appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+                                            className="mt-1 appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm text-gray-900"
                                         />
                                     </div>
                                 </div>
