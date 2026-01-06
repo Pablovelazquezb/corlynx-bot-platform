@@ -36,7 +36,14 @@ export async function POST(req: Request) {
             console.log(`🔍 Processing: PhoneID=${phoneNumberId}, MsgType=${message?.type}`);
 
             if (message && message.type === 'text') {
-                const from = message.from; // User's phone number
+                let from = message.from; // User's phone number
+
+                // Fix for Mexico numbers: Meta receives '521' but expects '52' in the allowed list
+                if (from.startsWith('521')) {
+                    console.log(`🇲🇽 Normalizing Mexico number: ${from} -> 52${from.substring(3)}`);
+                    from = '52' + from.substring(3);
+                }
+
                 const text = message.text.body;
                 console.log(`📩 User Message from ${from}: "${text}"`);
 
