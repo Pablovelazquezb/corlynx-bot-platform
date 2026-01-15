@@ -7,9 +7,13 @@ const globalForPrisma = globalThis as unknown as {
 export const prisma = globalForPrisma.prisma ?? new PrismaClient({
   datasources: {
     db: {
-      url: process.env.DATABASE_URL?.includes('pgbouncer=true')
-        ? process.env.DATABASE_URL
-        : `${process.env.DATABASE_URL}?pgbouncer=true&connection_limit=1`
+      url: (() => {
+        const url = process.env.DATABASE_URL;
+        if (!url) return undefined;
+        if (url.includes('pgbouncer=true')) return url;
+        const separator = url.includes('?') ? '&' : '?';
+        return `${url}${separator}pgbouncer=true&connection_limit=1`;
+      })()
     }
   }
 })
