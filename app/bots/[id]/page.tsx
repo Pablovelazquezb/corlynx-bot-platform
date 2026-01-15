@@ -133,6 +133,72 @@ export default async function BotPage({ params }: { params: { id: string } }) {
                             </div>
 
                             <div className="pt-4 border-t">
+                                <h3 className="text-md font-medium text-gray-900 mb-4">Voice Integration (Vapi + Twilio)</h3>
+
+                                <div className="space-y-4">
+                                    <div>
+                                        <label htmlFor="vapiPrivacyApiKey" className="block text-sm font-medium text-gray-700">
+                                            Vapi Private API Key
+                                        </label>
+                                        <input
+                                            id="vapiPrivacyApiKey"
+                                            name="vapiPrivacyApiKey"
+                                            type="password"
+                                            defaultValue={bot.vapiPrivacyApiKey || ''}
+                                            placeholder="Private Key..."
+                                            className="mt-1 appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm text-gray-900"
+                                        />
+                                    </div>
+
+                                    <div>
+                                        <label htmlFor="twilioAccountSid" className="block text-sm font-medium text-gray-700">
+                                            Twilio Account SID
+                                        </label>
+                                        <input
+                                            id="twilioAccountSid"
+                                            name="twilioAccountSid"
+                                            type="text"
+                                            defaultValue={bot.twilioAccountSid || ''}
+                                            className="mt-1 appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm text-gray-900"
+                                        />
+                                    </div>
+
+                                    <div>
+                                        <label htmlFor="twilioAuthToken" className="block text-sm font-medium text-gray-700">
+                                            Twilio Auth Token
+                                        </label>
+                                        <input
+                                            id="twilioAuthToken"
+                                            name="twilioAuthToken"
+                                            type="password"
+                                            defaultValue={bot.twilioAuthToken || ''}
+                                            className="mt-1 appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm text-gray-900"
+                                        />
+                                    </div>
+
+                                    <div>
+                                        <label htmlFor="twilioPhoneNumber" className="block text-sm font-medium text-gray-700">
+                                            Twilio Phone Number
+                                        </label>
+                                        <input
+                                            id="twilioPhoneNumber"
+                                            name="twilioPhoneNumber"
+                                            type="text"
+                                            defaultValue={bot.twilioPhoneNumber || ''}
+                                            placeholder="+1234567890"
+                                            className="mt-1 appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm text-gray-900"
+                                        />
+                                    </div>
+
+                                    {bot.vapiAssistantId && (
+                                        <div className="text-xs text-gray-500 mt-2">
+                                            Linked to Vapi Assistant: <span className="font-mono">{bot.vapiAssistantId}</span>
+                                        </div>
+                                    )}
+                                </div>
+                            </div>
+
+                            <div className="pt-4 border-t">
                                 <h3 className="text-md font-medium text-gray-900 mb-2">WhatsApp Integration</h3>
                                 <p className="text-sm text-gray-500 mb-4">
                                     To connect this bot to WhatsApp, you need to configure the Webhook URL in your Meta App settings.

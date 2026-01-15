@@ -26,6 +26,13 @@ model Bot {
   // AI config
   openaiApiKey          String?
 
+  // Vapi + Twilio Config
+  vapiPrivacyApiKey     String?  // Private API Key for Vapi
+  vapiAssistantId       String?  // ID of the assistant in Vapi
+  twilioAccountSid      String?
+  twilioAuthToken       String?
+  twilioPhoneNumber     String?
+
   messages  Message[]
 }
 
