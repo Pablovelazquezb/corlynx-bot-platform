@@ -66,6 +66,8 @@ export async function updateVapiAssistant({ assistantId, name, prompt, apiKey }:
         body: JSON.stringify({
             name,
             model: {
+                provider: 'openai',
+                model: 'gpt-3.5-turbo',
                 messages: [
                     {
                         role: 'system',
