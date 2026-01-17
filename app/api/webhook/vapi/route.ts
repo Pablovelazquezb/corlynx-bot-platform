@@ -38,6 +38,16 @@ export async function POST(req: NextRequest) {
                 },
             });
         }
+
+        if (message?.type === 'end-of-call-report' && message.analysis?.summary) {
+            await prisma.message.create({
+                data: {
+                    content: `[Call Summary] ${message.analysis.summary}`,
+                    role: 'system',
+                    botId,
+                },
+            });
+        }
         // Also handle 'end-of-call-report' which gives the summary, if we want.
         // For now, saving transcripts is enough to show the chat.
 
